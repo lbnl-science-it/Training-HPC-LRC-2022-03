@@ -1,6 +1,6 @@
 % HPC on Lawrencium Supercluster
 % Novermber 10, 2021
-% Wei Feinstein
+% Wei Feinstein, Edison Lam, and HPCS Team
 
 
 # Introduction
@@ -11,7 +11,7 @@ Video will be posted
 
 There will be a hands-on session at the end of this training
 
-[Training survey](https://docs.google.com/forms/d/e/1FAIpQLSeeJ2NyE5Fy6jcapfD9x-JbDR_5xrAhVtdrW0Yyg-LzUpckaA/viewform)
+[Training survey](https://docs.google.com/forms/d/e/1FAIpQLScX7D_OnHLVEqCJY1iGYQotfMMcxIX5SauF4c33ks08U3vhBw/viewform)
  
 
 # Outline
@@ -51,22 +51,22 @@ There will be a hands-on session at the end of this training
   - Individual PIs buy in compute nodes and storage
   - Computational cycles are shared among all lawrencium users
 
-- Lawrencium compute nodes
+- Lawrencium Compute Nodes
   - data center is housed in the building 50B
   - 1238 CPU Compute nodes, more than 37,192 cores
   - 152 GPU cards 
-  - 8 partitions, lr3,..., lr6, es1, cm1
+  - 8 partitions, lr3, ..., lr6, es1, cm1
   - ~1300 user accounts
   - ~530 groups 
 
-- Standalone clusters
+- Standalone Clusters
 
 
 # Conceptual Diagram of Lawrencium
 
 <left><img src="figures/lrc1.png" width="80%"></left>
 
-[Detailed information of Lawrencium](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/lbnl-supercluster/lawrencium)
+[Detailed information of Lawrencium](https://it.lbl.gov/resource/hpc/supported-research-clusters/lawrencium/)
 
 
 # Getting Access to Lawrencium
@@ -76,22 +76,22 @@ There will be a hands-on session at the end of this training
 - *Primary Investigator (PI) Computing Allowance (PCA) account*: free 300K SUs per year (pc_xxx)
 - *Condo account*: PIs buy in compute nodes to be added to the general pool, in exchange for their own priority access and share the Lawrencium infrastructure (lr_xxx)
 - *Recharge account*: pay as you go with minimal recharge rate ~ $0.01/SU (ac_xxx)
-- Details about project accounts can be found [http://scs.lbl.gov/getting-an-account](http://scs.lbl.gov/getting-an-account)
-- [Request project accounts](https://docs.google.com/forms/d/e/1FAIpQLSeAqRcB61J8x3YAuca4QxgMW6OneLbC8wVRbafHNOZDE-h4Fg/viewform) 
-- PIs can grant access researchers/students and external collaborators to their PCA/condo/recharge projects
+- Details about project accounts can be found [https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/)
+- [Request Project Accounts](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/accounts/projects-accounts) 
+- PIs can grant access researchers/students and external collaborators to their PCA/Condo/Recharge Projects
 
-#### User accounts
+#### User Accounts
 - PIs sponsor researchers/students and external collaborators for cluster accounts
-- [User account request form](https://docs.google.com/forms/d/e/1FAIpQLSf76kbdJd4GwRQX_iVYVgYwo_wBFmKCcsXyqsnWwlmf_JUgNA/viewform)
-- [User agreement](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/useragreement)
+- [User Account Request Form](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/accounts/user-accounts/)
+- [User Agreement Form](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/accounts/user-accounts/)
 
 
 # Login to Lawrencium Cluster
 
-- Linux terminal (command-line) session. 
-- Mac terminal (see Applications -> Utilities -> Terminal). 
-- Windows [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
-- One-time passwords (OTPs): set up your smartphone or tablet with Google Authenticator with [Instructions here](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/authentication/linotp-usage) 
+- Linux: Terminal (command-line) session. 
+- Mac: Terminal (see Applications -> Utilities -> Terminal). 
+- Windows: PowerShell, or [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+- One-time passwords (OTPs): set up your smartphone or tablet with Google Authenticator with [Instructions here](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/connecting/multi-factor-authentication) 
 - Login:
 ```
 ssh $USER@lrc-login.lbl.gov
@@ -139,7 +139,7 @@ rsync -avpz file-at-local $USER@lrc-xfer.lbl.gov:/global/home/user/$USER
 # Data Transfer with Globus
 
 - Globus lets you transfer and share data on your storage systems with collaborators 
-- Fast data transfer, refer to [instructions](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/getting-started/data-transfer)
+- Fast data transfer, refer to [instructions](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/data-movement-and-storage/globus/)
 - Berkeley Lab users can use Globus to transfer files in/out of their LBNL Google drive. Details about Google drive via Globus is [here](https://commons.lbl.gov/display/itdivision/GDrive+Access+Via+Globus)
 - Possible endpoints include: lbnl#lrc, your laptop/desktop, NERSC, among others.
 - Transfer data to/from your laptop (endpoint setup)
@@ -192,7 +192,7 @@ module load intel/2016.4.072
 module av openmpi
 module load mkl/2016.4.072 openmpi/3.0.1-intel
 ```
-- [More environment modules information](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/getting-started/sl6-module-farm-guide)
+- [More Environment Modules Information](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/software-module-farm/)
 - Users are allowed to install software in their home or group space
 - Users don't have admin rights, but most software can be installed 
 ` --prefix=/dir/to/your/path`
@@ -246,7 +246,7 @@ Basic workflow:
   - your jobs will run on a compute node, not the login node 
 
 
-# Slurm-related environment variables
+# Slurm-Related Environment Variables
 
 - Slurm provides global variables
 - Can be used in your job submission scripts to adapt the resources being requested in order to avoid hard-code
@@ -276,7 +276,7 @@ perceus-00|lr_test|wfeinstein|lr3|1||||||||||||condo_test|||
 perceus-00|scs|wfeinstein|es1|1||||||||||||es_debug,es_lowprio,es_normal|||
 ...
 ```
-Lawrencium cluster info click [here](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/lbnl-supercluster/lawrencium)
+Lawrencium Cluster Info Click [Here](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/lbnl-supercluster/lawrencium)
 
 
 # Job Submission
@@ -330,18 +330,18 @@ exit
 Mem:           187G        2.6G        172G        1.7G         12G        182G
 Swap:          8.0G        1.5G        6.5G
 ```
-- Node features can be found [here](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/lbnl-supercluster/lawrencium)
+- Node Features Can Be Found [Here](https://it.lbl.gov/resource/hpc/supported-research-clusters/lawrencium/)
 
 
-# Memeory specification 
+# Memory Specification 
 
 - Most Lawrencium partitions are exclusive: a compute node allows only one user
 - Some condo accounts or partitions, such as ES1 (GPUs), each compute node can be shared by multiple users   
 
 - Slurm flag: --mem (MB) is required when using a shared partition:
 - e.g. a compute node with 96GB RAM, 40 core node: 2300 RAM/core
-  - --ntaks=1 --mem=2300 (request one core)
-  - --ntaks=2 --mem=4600 (request 2 cores) 
+  - `--ntask=1 --mem=2300` (request one core)
+  - `--ntask=2 --mem=4600` (request 2 cores) 
 
 - LR6 partition lr_bigmem: two large memory nodes (1.5TB)
 - Slurm flag: --partition=lr_bigmem
@@ -392,12 +392,13 @@ python my.py >& mypy.out
 ````
 
 
-# Submit jobs to ES1 GPU partition
+# Submit Jobs to ES1 GPU Partition
 #### Interactive GPU Jobs
 
-- --gres=gpu:type:GPU#  
-- --ntasks=CPU_CORE#
+- `--gres=gpu:type:GPU#`
+- `--ntasks=CPU_CORE#`
 - ratio CPU_CORE#:GPU# = 2:1
+
 ```
 srun -A your_acct -N 1 -p es1 --gres=gpu:1 --ntasks=2 -q es_normal –t 0:30:0 --pty bash
 
@@ -496,7 +497,7 @@ mpirun -np 80 ./my_mpi_exe        ## Launch your MPI application
 ````
 
 
-# Submit serial tasks in Parallel (GNU Parallel) 
+# Submit Serial Tasks in Parallel (GNU Parallel) 
 
 GNU Parallel is a shell tool for executing jobs in parallel on one or multiple computers. 
 
@@ -507,7 +508,7 @@ GNU Parallel is a shell tool for executing jobs in parallel on one or multiple c
   - a list of tasks with parameters 
 
 
-# Example using GNU Parallel
+# Example Using GNU Parallel
 
 Bioinformatics tool *blastp* to compare 200 target protein sequences against sequence DB
  
@@ -532,7 +533,7 @@ JOBS_PER_NODE=32
 parallel --jobs $JOBS_PER_NODE --slf hostfile --wd $WDIR --joblog task.log --resume --progress \
                 -a task.lst sh run-blast.sh {} output/{/.}.blst 
 ```
-Detailed information of how to submit serial tasks in parallel with [GNU parallel](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/getting-started/faq)
+Detailed information of how to submit serial tasks in parallel with [GNU Parallel](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/running-jobs/gnu-parallel/)
 
 
 # Monitoring Jobs
@@ -577,7 +578,7 @@ squeue –u $USER
 28757389     wfeinste+        es1       n0002.es1    TIMEOUT 
 28757723     wfeinste+        es1       n0002.es1    RUNNING 
 ```
-- wwall -j <JOB_ID>: check resouce utilization of an active job from a login node
+- `wwall -j <JOB_ID>`: check resouce utilization of an active job from a login node
 ```
 [wfeinstein@n0000 ~]$ wwall -j 28757187
 --------------------------------------------------------------------------------
@@ -596,10 +597,10 @@ n0215.lr6               0%   (40) % 3473/192058    % 1655/8191      READY
 
 - `scancel <jobID>` : scancel a job 
 
-More information of [slurm usage](https://sites.google.com/a/lbl.gov/high-performance-computing-services-group/scheduler/slurm-usage-instructions)
+More Information of [Slurm Usage](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/running-jobs/)
 
 
-# Open Ondemand 
+# Open OnDemand 
 
 - Single web point of entry to the Lawrencium Supercluster
 - Allow access to Lawrencium compute resources  					
@@ -664,11 +665,11 @@ Installed kernelspec mykernel in /global/home/users/wfeinstein/.local/share/jupy
 
 - Virtual Office Hours:
     - Time: 10:30am - noon (Wednesdays)
-    - Online [request](https://docs.google.com/forms/d/e/1FAIpQLScBbNcr0CbhWs8oyrQ0pKLmLObQMFmYseHtrvyLfOAoIInyVA/viewform)
+    - Online [Request](https://docs.google.com/forms/d/e/1FAIpQLScBbNcr0CbhWs8oyrQ0pKLmLObQMFmYseHtrvyLfOAoIInyVA/viewform)
 - Sending us tickets at hpcshelp@lbl.gov
 - More information, documents, tips of how to use LBNL Supercluster [http://scs.lbl.gov/](http://scs.lbl.gov)
 - New Science IT website will be launched Nov 15th, 2021
-- Please fill out [Training Survey](https://docs.google.com/forms/d/e/1FAIpQLSeeJ2NyE5Fy6jcapfD9x-JbDR_5xrAhVtdrW0Yyg-LzUpckaA/viewform)
+- Please fill out [Training Survey](https://docs.google.com/forms/d/e/1FAIpQLScX7D_OnHLVEqCJY1iGYQotfMMcxIX5SauF4c33ks08U3vhBw/viewform)
 
 
 # Hands-on Exercise
@@ -792,7 +793,7 @@ python my.py >& mypy.out
 
 # Monitor jobs
 
-`squeu -u $USER`
+`squeue -u $USER`
 
 `sacct -j <JOBID>`
 
