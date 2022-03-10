@@ -5,7 +5,7 @@
 
 # Introduction
 
-Slides and sample codes can be found on github [https://github.com/lbnl-science-it/Training-HPC-on-Lawrencium](https://github.com/lbnl-science-it/Training-HPC-on-Lawrencium)
+Slides and sample codes can be found on github [https://github.com/lbnl-science-it/Training-HPC-LRC-2022-03](https://github.com/lbnl-science-it/Training-HPC-LRC-2022-03)
 
 Video will be posted
 
