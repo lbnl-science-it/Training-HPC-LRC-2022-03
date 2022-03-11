@@ -43,48 +43,47 @@ survey</a></p>
 <div id="outline" class="slide section level1">
 <h1>Outline</h1>
 <ul>
-<li>Overview of Lawrencium supercluster</li>
-<li>Access to the cluster
+<li>Overview of Lawrencium Supercluster</li>
+<li>Access to the Cluster
 <ul>
-<li>Project types</li>
-<li>User accounts</li>
-<li>login</li>
-<li>Storage/compute space (home, scratch, group, condo storage)</li>
+<li>Project Types</li>
+<li>User Accounts</li>
+<li>Login</li>
+<li>Storage/Compute Space (Home, Scratch, Group Storage, Condo
+Storage)</li>
 </ul></li>
-<li>Data transfer
+<li>Data Transfer
 <ul>
-<li>DTN data transfer node</li>
+<li>Data Transfer Node (DTN)</li>
 <li>Globus</li>
 <li>GDrive</li>
 </ul></li>
-<li>Software stack and installation
+<li>Software Stack and Installation
 <ul>
 <li>Software Module Farm</li>
-<li>Installation of your own software</li>
+<li>Installation of Your Own Software</li>
 </ul></li>
-<li>Job submission and monitoring
+<li>Job Submission and Monitoring
 <ul>
-<li>Accounts &amp; partitions</li>
-<li>Basic job submission</li>
-<li>Interactive jobs</li>
-<li>GPU job submission</li>
-<li>Submit serial tasks in parallel</li>
+<li>Accounts &amp; Partitions</li>
+<li>Basic Job Submission</li>
+<li>Interactive Jobs</li>
+<li>GPU Job Submission</li>
+<li>Submit Serial Tasks in Parallel</li>
 </ul></li>
-<li>Open Ondemand Web Service
+<li>Open OnDemand Web Service
 <ul>
 <li>Overview</li>
-<li>Jupyter notebooks</li>
+<li>Jupyter Notebooks</li>
 <li>Customized kernel</li>
-<li>Remote visualization<br />
-</li>
 </ul></li>
-<li>Hands-on exercises</li>
+<li>Hands-On Exercises</li>
 </ul>
 </div>
 <div id="lawrencium-cluster-overview" class="slide section level1">
 <h1>Lawrencium Cluster Overview</h1>
 <ul>
-<li>A LBNL Condo Cluster Computing program
+<li>A LBNL Condo Cluster Computing Program
 <ul>
 <li>Support researchers in all disciplines at the Lab</li>
 <li>Significant investment by the IT division</li>
@@ -108,11 +107,11 @@ survey</a></p>
 <p><left><img src="figures/lrc1.png" width="80%"></left></p>
 <p><a
 href="https://it.lbl.gov/resource/hpc/supported-research-clusters/lawrencium/">Detailed
-information of Lawrencium</a></p>
+Information of Lawrencium</a></p>
 </div>
 <div id="getting-access-to-lawrencium" class="slide section level1">
 <h1>Getting Access to Lawrencium</h1>
-<h4 id="three-types-of-project-accounts">Three types of Project
+<h4 id="three-types-of-project-accounts">Three Types of Project
 Accounts</h4>
 <ul>
 <li><em>Primary Investigator (PI) Computing Allowance (PCA)
@@ -153,7 +152,7 @@ href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>.
 <li>One-time passwords (OTPs): set up your smartphone or tablet with
 Google Authenticator with <a
 href="https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/connecting/multi-factor-authentication">Instructions
-here</a></li>
+Here</a></li>
 <li>Login:</li>
 </ul>
 <pre><code>ssh $USER@lrc-login.lbl.gov
@@ -170,14 +169,14 @@ phone/tablet.</p></li>
 <ul>
 <li>Home: <code>/global/home/users/$USER/</code> 20GB per user, data is
 backed up</li>
-<li>Global scratch: <code>/global/scratch/$USER/</code>, shared, no
+<li>Global Scratch: <code>/global/scratch/$USER/</code>, shared, no
 backup, where to launch jobs</li>
 <li>Shared group project space
 <ul>
 <li>/global/home/groups-sw/ 200GB backup</li>
 <li>/global/home/group/ 400GB no backup</li>
 </ul></li>
-<li>Condo storage:
+<li>Condo Storage:
 <ul>
 <li><code>e.g. /clusterfs/etna/ or /global/scratch/projects/xxx</code></li>
 </ul></li>
@@ -219,10 +218,10 @@ multi-platform program via SFTP</li>
 <li>Globus lets you transfer and share data on your storage systems with
 collaborators</li>
 <li>Fast data transfer, refer to <a
-href="https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/data-movement-and-storage/globus/">instructions</a></li>
+href="https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/data-movement-and-storage/globus/">Instructions</a></li>
 <li>Berkeley Lab users can use Globus to transfer files in/out of their
-LBNL Google drive. Details about Google drive via Globus is <a
-href="https://commons.lbl.gov/display/itdivision/GDrive+Access+Via+Globus">here</a></li>
+LBNL Google drive. Details about Google Drive via Globus is <a
+href="https://commons.lbl.gov/display/itdivision/GDrive+Access+Via+Globus">Here</a></li>
 <li>Possible endpoints include: lbnl#lrc, your laptop/desktop, NERSC,
 among others.</li>
 <li>Transfer data to/from your laptop (endpoint setup)
@@ -579,11 +578,11 @@ The key flags for use in your job script are:</p>
 <li>–ntasks-per-node: number of tasks (i.e., processes) to run on each
 node, especially useful when your job uses large memory, &lt; Max Core#
 on a node</li>
-<li>–cpus-per-task (or -c): number of CPUs to be used for each task</li>
 <li>–ntasks (or -n): total number of tasks and let the scheduler
 determine how many nodes and tasks per node are needed.</li>
-<li>In general –cpus-per-task will be 1 except when running threaded
-code.</li>
+<li><em>NOTE:</em> <code>--cpus-per-task</code> does not behave
+correctly at this time. Please refrain from using it until further
+notice.</li>
 </ul>
 <pre><code>#!/bin/bash -l
 
@@ -593,14 +592,14 @@ code.</li>
 #SBATCH --qos=lr_normal
 #SBATCH --time=2:00:00
 #SBATCH --nodes=2                ## Nodes count
-##SBATCH --ntasks=80             ## Number of total MPI tasks to launch (example):  
+##SBATCH --ntasks=40             ## Number of total MPI tasks to launch (example):  
 ##SBATCH --ntasks-per-node=20    ## important with large memory requirement
 
 cd /your/dir
 
 ## Commands to run
 module load intel/2016.4.072 openmpi/3.0.1-intel
-mpirun -np 80 ./my_mpi_exe        ## Launch your MPI application</code></pre>
+mpirun -np 40 ./my_mpi_exe        ## Launch your MPI application</code></pre>
 </div>
 <div id="submit-serial-tasks-in-parallel-gnu-parallel"
 class="slide section level1">
@@ -800,7 +799,6 @@ href="https://docs.google.com/forms/d/e/1FAIpQLScBbNcr0CbhWs8oyrQ0pKLmLObQMFmYse
 <li>Sending us tickets at hpcshelp@lbl.gov</li>
 <li>More information, documents, tips of how to use LBNL Supercluster <a
 href="http://scs.lbl.gov">http://scs.lbl.gov/</a></li>
-<li>New Science IT website will be launched Nov 15th, 2021</li>
 <li>Please fill out <a
 href="https://docs.google.com/forms/d/e/1FAIpQLScX7D_OnHLVEqCJY1iGYQotfMMcxIX5SauF4c33ks08U3vhBw/viewform">Training
 Survey</a></li>
