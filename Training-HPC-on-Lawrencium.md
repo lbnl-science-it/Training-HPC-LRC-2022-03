@@ -16,36 +16,35 @@ There will be a hands-on session at the end of this training
 
 # Outline
 
-- Overview of Lawrencium supercluster
-- Access to the cluster
-  - Project types 
-  - User accounts
-  - login 
-  - Storage/compute space (home, scratch, group, condo storage)
-- Data transfer 
-  - DTN data transfer node
+- Overview of Lawrencium Supercluster
+- Access to the Cluster
+  - Project Types 
+  - User Accounts
+  - Login 
+  - Storage/Compute Space (Home, Scratch, Group Storage, Condo Storage)
+- Data Transfer 
+  - Data Transfer Node (DTN)
   - Globus
   - GDrive
-- Software stack and installation 
+- Software Stack and Installation 
   - Software Module Farm
-  - Installation of your own software
-- Job submission and monitoring
-  - Accounts & partitions
-  - Basic job submission
-  - Interactive jobs
-  - GPU job submission
-  - Submit serial tasks in parallel
-- Open Ondemand Web Service
+  - Installation of Your Own Software
+- Job Submission and Monitoring
+  - Accounts & Partitions
+  - Basic Job Submission
+  - Interactive Jobs
+  - GPU Job Submission
+  - Submit Serial Tasks in Parallel
+- Open OnDemand Web Service
   - Overview
-  - Jupyter notebooks 
+  - Jupyter Notebooks 
   - Customized kernel
-  - Remote visualization  
-- Hands-on exercises
+- Hands-On Exercises
 
 
 # Lawrencium Cluster Overview
 
-- A LBNL Condo Cluster Computing program
+- A LBNL Condo Cluster Computing Program
   - Support researchers in all disciplines at the Lab
   - Significant investment by the IT division
   - Individual PIs buy in compute nodes and storage
@@ -66,12 +65,12 @@ There will be a hands-on session at the end of this training
 
 <left><img src="figures/lrc1.png" width="80%"></left>
 
-[Detailed information of Lawrencium](https://it.lbl.gov/resource/hpc/supported-research-clusters/lawrencium/)
+[Detailed Information of Lawrencium](https://it.lbl.gov/resource/hpc/supported-research-clusters/lawrencium/)
 
 
 # Getting Access to Lawrencium
 
-#### Three types of Project Accounts
+#### Three Types of Project Accounts
 
 - *Primary Investigator (PI) Computing Allowance (PCA) account*: free 300K SUs per year (pc_xxx)
 - *Condo account*: PIs buy in compute nodes to be added to the general pool, in exchange for their own priority access and share the Lawrencium infrastructure (lr_xxx)
@@ -91,7 +90,7 @@ There will be a hands-on session at the end of this training
 - Linux: Terminal (command-line) session. 
 - Mac: Terminal (see Applications -> Utilities -> Terminal). 
 - Windows: PowerShell, or [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
-- One-time passwords (OTPs): set up your smartphone or tablet with Google Authenticator with [Instructions here](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/connecting/multi-factor-authentication) 
+- One-time passwords (OTPs): set up your smartphone or tablet with Google Authenticator with [Instructions Here](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/connecting/multi-factor-authentication) 
 - Login:
 ```
 ssh $USER@lrc-login.lbl.gov
@@ -105,11 +104,11 @@ password:
 # User Space
  
 - Home: `/global/home/users/$USER/` 20GB per user, data is backed up
-- Global scratch: `/global/scratch/$USER/`, shared, no backup, where to launch jobs
+- Global Scratch: `/global/scratch/$USER/`, shared, no backup, where to launch jobs
 - Shared group project space
    - /global/home/groups-sw/  200GB backup
    - /global/home/group/ 400GB no backup
-- Condo storage: 
+- Condo Storage: 
   - `e.g. /clusterfs/etna/ or /global/scratch/projects/xxx`
 
 
@@ -139,8 +138,8 @@ rsync -avpz file-at-local $USER@lrc-xfer.lbl.gov:/global/home/user/$USER
 # Data Transfer with Globus
 
 - Globus lets you transfer and share data on your storage systems with collaborators 
-- Fast data transfer, refer to [instructions](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/data-movement-and-storage/globus/)
-- Berkeley Lab users can use Globus to transfer files in/out of their LBNL Google drive. Details about Google drive via Globus is [here](https://commons.lbl.gov/display/itdivision/GDrive+Access+Via+Globus)
+- Fast data transfer, refer to [Instructions](https://it.lbl.gov/resource/hpc/for-users/hpc-documentation/data-movement-and-storage/globus/)
+- Berkeley Lab users can use Globus to transfer files in/out of their LBNL Google drive. Details about Google Drive via Globus is [Here](https://commons.lbl.gov/display/itdivision/GDrive+Access+Via+Globus)
 - Possible endpoints include: lbnl#lrc, your laptop/desktop, NERSC, among others.
 - Transfer data to/from your laptop (endpoint setup)
    - Create an endpoint on your machine using Globus Connect Personal [https://www.globus.org/globus-connect-personal](https://www.globus.org/globus-connect-personal)
@@ -473,9 +472,8 @@ When use multiple nodes, you need to carefully specify the resources. The key fl
 
 - --nodes (or -N): number of nodes 
 - --ntasks-per-node: number of tasks (i.e., processes) to run on each node, especially useful when your job uses large memory, < Max Core# on a node 
-- --cpus-per-task (or -c): number of CPUs to be used for each task
 - --ntasks (or -n): total number of tasks and let the scheduler determine how many nodes and tasks per node are needed. 
-- In general --cpus-per-task will be 1 except when running threaded code.
+- *NOTE:* `--cpus-per-task` does not behave correctly at this time. Please refrain from using it until further notice.
 
 ```
 #!/bin/bash -l
@@ -486,14 +484,14 @@ When use multiple nodes, you need to carefully specify the resources. The key fl
 #SBATCH --qos=lr_normal
 #SBATCH --time=2:00:00
 #SBATCH --nodes=2                ## Nodes count
-##SBATCH --ntasks=80             ## Number of total MPI tasks to launch (example):  
+##SBATCH --ntasks=40             ## Number of total MPI tasks to launch (example):  
 ##SBATCH --ntasks-per-node=20    ## important with large memory requirement
 
 cd /your/dir
 
 ## Commands to run
 module load intel/2016.4.072 openmpi/3.0.1-intel
-mpirun -np 80 ./my_mpi_exe        ## Launch your MPI application
+mpirun -np 40 ./my_mpi_exe        ## Launch your MPI application
 ````
 
 
@@ -668,7 +666,6 @@ Installed kernelspec mykernel in /global/home/users/wfeinstein/.local/share/jupy
     - Online [Request](https://docs.google.com/forms/d/e/1FAIpQLScBbNcr0CbhWs8oyrQ0pKLmLObQMFmYseHtrvyLfOAoIInyVA/viewform)
 - Sending us tickets at hpcshelp@lbl.gov
 - More information, documents, tips of how to use LBNL Supercluster [http://scs.lbl.gov/](http://scs.lbl.gov)
-- New Science IT website will be launched Nov 15th, 2021
 - Please fill out [Training Survey](https://docs.google.com/forms/d/e/1FAIpQLScX7D_OnHLVEqCJY1iGYQotfMMcxIX5SauF4c33ks08U3vhBw/viewform)
 
 
